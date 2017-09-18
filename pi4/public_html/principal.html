@@ -1,0 +1,25 @@
+<div class="col-xs-12 col-sm-3">
+    <h2>Filtros</h2>
+    <form action="#">
+        <div class="form-group">
+            <!-- <label for="min">Preço minimo <span id="valorMinimo" ng-bind="min"></span></label> -->
+            <label for="min">Preço minimo {{min| currency:"R$"}}<span id="valorMinimo" ></span></label>
+            <input id="min" type="range" ng-model="min" class="form-control" min="0" max="10000" value="0">
+        </div>
+        <div class="form-group">
+            <label for="max">Preço maximo {{max| currency:"R$"}}<span id="valorMaximo"></span></label>
+            <input id="max" type="range" ng-model="max" class="form-control" min="0" max="10000" value="10000">
+        </div>
+    </form>
+    <div>
+        <label for="nome">Palavra-chave</label>
+        <input id="nome" type="text" ng-model="nome">
+    </div>
+</div>
+<div class="col-xs-12 col-sm-9">
+    <h2>Produtos</h2>
+    <p ng-show="listaFinal.length <= 0" class="alert alert-warning">Nenhum produto atende ao critério dos filtros!</p>
+    <ul id="produtos">
+        <li ng-repeat="p in produtos| filter: nome | filter: filtro as listaFinal"><a href="#!/produto/{{p.id}}"><b>{{p.nome}}</b></a> - {{p.preco| currency:"R$":2}}</li>
+    </ul>
+</div>
